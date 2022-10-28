@@ -1,0 +1,27 @@
+<h2>Reactive: Basics</h2>
+
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="onSave()">
+  <label for="">Producto</label>
+  <input type="text" formControlName="name" />
+  <p class="error" *ngIf="fieldIsValid('name')">Es requerido</p>
+  <!-- <p class="error" *ngIf="fieldIsValid('name')">Debe ser mas de 3 letras</p> -->
+
+  <label for="">Precio</label>
+  <input type="number" formControlName="price" />
+  <p class="error" *ngIf="fieldIsValid('price')">El precio debe ser 0 o mayor</p>
+
+  <label for="">Cantidad</label>
+  <input type="number" formControlName="quantity" />
+  <p class="error" *ngIf="fieldIsValid('quantity')">El campo es requerido</p>
+
+  <button type="submit">Enviar</button>
+</form>
+
+<div>
+  <pre>Valid: {{ form.valid }}</pre>
+  <pre>Pristine: {{ form.pristine }}</pre>
+  <pre>Touched: {{ form.touched }}</pre>
+  <pre>Value: {{ form.value | json }}</pre>
+  <pre>Quantity Error: {{ form.controls.quantity?.errors | json }}</pre>
+  <pre>Price Error: {{ form.controls.price?.errors | json }}</pre>
+</div>

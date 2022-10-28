@@ -1,0 +1,38 @@
+<h2>Reactive: Dynamics</h2>
+<hr />
+
+<form [formGroup]="form">
+  <!-- field -->
+  <div class="form-control">
+    <label for="">Nombre</label>
+    <input type="text" formControlName="name" />
+    <span class="error" *ngIf="validateField('name')">Campo obligatorio</span>
+  </div>
+
+  <!-- field -->
+  <label for="">Agregar Favoritos</label>
+  <div class="input-group">
+    <input type="text" [formControl]="newFavorite" (keyup.enter)="addFavorite()" />
+    <button type="button" (click)="addFavorite()">Agregar</button>
+  </div>
+
+  <hr />
+
+  <label for="">Favoritos</label>
+  <div formArrayName="favorites">
+    <div class="input-group" *ngFor="let favorite of favoritesArray.controls; let idx = index">
+      <input type="text" [formControlName]="idx" />
+      <button type="button" class="btn-danger" (click)="deleteFavorite(idx)">Eliminar</button>
+    </div>
+  </div>
+
+  <hr />
+  <button type="button" (click)="onSave()" class="btn-success">Enviar</button>
+</form>
+
+<hr />
+
+<pre>Valid {{ form.valid }}</pre>
+<pre>Values: {{ form.value | json }}</pre>
+<pre>Add New Favorite: {{ newFavorite.value | json }}</pre>
+<pre>Error New Favorite: {{ newFavorite.errors | json }}</pre>
