@@ -1,0 +1,30 @@
+<h2>Template: Basics</h2>
+
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <label for="">Producto</label>
+  <input type="text" name="product" [ngModel]="initialForm.product" required minlength="3" />
+
+  <p class="text-error">
+    <span *ngIf="validateName()">Es requerido </span>
+    <!-- <span>Minimo son 3 letras </span> -->
+  </p>
+
+  <label for="">Precio</label>
+  <input type="number" name="price" [ngModel]="initialForm.price" required />
+  <p class="text-error" *ngIf="validatePrice()">El precio debe ser 0 o mayor</p>
+
+  <label for="">Cantidad</label>
+  <input type="number" name="quantity" [ngModel]="initialForm.quantity" customMin [cmin]="0" required />
+
+  <button type="submit">Enviar</button>
+</form>
+
+<div>
+  <pre>Valid: {{ form.valid }}</pre>
+  <pre>Pristine: {{ form.pristine }}</pre>
+  <pre>Touched: {{ form.touched }}</pre>
+  <p>Value</p>
+  <pre>{{ form.value | json }}</pre>
+  <p>Errors</p>
+  <pre>{{ form.controls.quantity?.errors | json }}</pre>
+</div>

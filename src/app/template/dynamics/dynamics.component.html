@@ -1,0 +1,32 @@
+<h2>Template: Dynamics</h2>
+<hr />
+
+<form #form="ngForm" (ngSubmit)="save()">
+  <!-- field -->
+  <div class="form-control">
+    <label for="">Nombre</label>
+    <input type="text" name="name" [ngModel]="person.name" required />
+    <span *ngIf="form.controls.name?.touched && form.controls.name?.invalid" class="error">Campo obligatorio</span>
+  </div>
+
+  <!-- field -->
+  <label for="">Agregar Favoritos</label>
+  <input type="text" name="newGame" [(ngModel)]="newGame" required (keyup.enter)="addGame()" />
+  <button type="button" (click)="addGame()">Agregar</button>
+  <hr />
+
+  <label for="">Favoritos</label>
+
+  <div class="input-group" *ngFor="let game of person.favorites; let i = index">
+    <input type="text" [(ngModel)]="game.name" name="{{ game.name + i }}" required />
+    <button type="button" (click)="deleteItem(i)" class="btn-danger">Eliminar</button>
+  </div>
+
+  <hr />
+  <button type="button" [disabled]="form.invalid" (click)="save()" class="btn-success">Enviar</button>
+</form>
+
+<hr />
+
+<p>Person</p>
+<pre>{{ person | json }}</pre>

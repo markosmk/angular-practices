@@ -1,0 +1,33 @@
+<h2>Template: Switches</h2>
+<hr />
+
+<form #form="ngForm" (ngSubmit)="onSave(form)">
+  <div class="form-control">
+    <label for="flex-radio-1">Male*</label>
+    <input type="radio" name="gender" [(ngModel)]="person.gender" value="M" id="flex-radio-1" required />
+  </div>
+  <div class="form-control">
+    <label for="flex-radio-2">Female*</label>
+    <input type="radio" name="gender" [(ngModel)]="person.gender" value="F" id="flex-radio-2" required />
+  </div>
+
+  <hr />
+
+  <div class="form-control">
+    <label for="flex-checkbox-1">I want notifications.</label>
+    <input type="checkbox" name="notifications" [(ngModel)]="person.notifications" id="flex-checkbox-1" />
+  </div>
+
+  <div class="form-control">
+    <label for="flex-checkbox-2">Terms and Conditions.*</label>
+    <input type="checkbox" name="terms" [(ngModel)]="terms" id="flex-checkbox-2" required />
+  </div>
+  <hr />
+
+  <button type="submit" [disabled]="form.invalid">Enviar</button>
+</form>
+
+<pre>Valid: {{ form.valid }}</pre>
+<pre>Form: {{ form.value | json }}</pre>
+<pre>Person: {{ person | json }}</pre>
+<pre>Error in Checkbox Terms: {{ form.controls?.terms?.errors | json }}</pre>
