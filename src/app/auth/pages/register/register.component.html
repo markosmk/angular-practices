@@ -8,27 +8,33 @@
     <input type="text" formControlName="name" placeholder="Enter your FirstName and LastName" />
     <p class="error" *ngIf="validateField('name')">This field is required</p>
   </div>
+
   <!-- email -->
   <div class="form-control">
     <label for="">Email</label>
     <input type="text" formControlName="email" placeholder="Enter your Email Address" />
     <p class="error" *ngIf="validateField('email')">This field is required</p>
   </div>
+
   <!-- username -->
   <div class="form-control">
     <label for="">UserName</label>
     <input type="text" placeholder="Enter your Username" formControlName="username" />
     <p class="error" *ngIf="validateField('username')">This field is required and 'not scooby'</p>
   </div>
+
   <!-- password -->
   <div class="form-control">
     <label for="">Password</label>
-    <input type="password" placeholder="Enter your Password" />
+    <input type="password" formControlName="password" placeholder="Enter your Password" />
+    <p class="error" *ngIf="validateField('password')">Password must be min 6 characters</p>
   </div>
+
   <!-- password-confirm -->
   <div class="form-control">
     <label for="">Password Confirm</label>
-    <input type="password" placeholder="Enter your Password Confirm" />
+    <input type="password" formControlName="passwordConfirm" placeholder="Enter your Password Confirm" />
+    <p class="error" *ngIf="validateField('passwordConfirm')">PasswordConfirm and Password must be same</p>
   </div>
 
   <button type="submit" class="btn-success">Submit</button>
@@ -36,6 +42,9 @@
 
 <hr />
 <pre>Form Valid: {{ form.valid }}</pre>
-<pre>Name Errors: {{ form.controls.name.errors | json }}</pre>
+<pre>Form Errors Global: {{ form.errors | json }}</pre>
+<!-- <pre>Name Errors: {{ form.controls.name.errors | json }}</pre>
 <pre>Email Errors: {{ form.controls.email.errors | json }}</pre>
-<pre>Username Errors: {{ form.controls.username.errors | json }}</pre>
+<pre>Username Errors: {{ form.controls.username.errors | json }}</pre> -->
+<pre>Password Errors: {{ form.controls.password.errors | json }}</pre>
+<pre>Confirm Errors: {{ form.controls.passwordConfirm.errors | json }}</pre>

@@ -9,11 +9,19 @@ import { ValidatorService } from 'src/app/shared/validator/validator.service';
   styles: [],
 })
 export class RegisterComponent implements OnInit {
-  form: FormGroup = this.fb.group({
-    name: [, [Validators.required, Validators.pattern(this.validatorSrv.fullNamePattern)]],
-    email: [, [Validators.required, Validators.pattern(this.validatorSrv.emailPattern)]],
-    username: [, [Validators.required, this.validatorSrv.validateUsername]],
-  });
+  form: FormGroup = this.fb.group(
+    {
+      name: [, [Validators.required, Validators.pattern(this.validatorSrv.fullNamePattern)]],
+      email: [, [Validators.required, Validators.pattern(this.validatorSrv.emailPattern)]],
+      username: [, [Validators.required, this.validatorSrv.validateUsername]],
+      password: [, [Validators.required, Validators.minLength(6)]],
+      passwordConfirm: [, [Validators.required]],
+    },
+    {
+      validators: [this.validatorSrv.matchFields('password', 'passwordConfirm')],
+    }
+  );
+
   constructor(private fb: FormBuilder, private validatorSrv: ValidatorService) {}
 
   ngOnInit(): void {
