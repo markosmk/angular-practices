@@ -1,2 +1,41 @@
 <h2>Validation - Register</h2>
 <hr />
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <!-- name -->
+  <div class="form-control">
+    <label for="">Name</label>
+    <input type="text" formControlName="name" placeholder="Enter your FirstName and LastName" />
+    <p class="error" *ngIf="validateField('name')">This field is required</p>
+  </div>
+  <!-- email -->
+  <div class="form-control">
+    <label for="">Email</label>
+    <input type="text" formControlName="email" placeholder="Enter your Email Address" />
+    <p class="error" *ngIf="validateField('email')">This field is required</p>
+  </div>
+  <!-- username -->
+  <div class="form-control">
+    <label for="">UserName</label>
+    <input type="text" placeholder="Enter your Username" formControlName="username" />
+    <p class="error" *ngIf="validateField('username')">This field is required and 'not scooby'</p>
+  </div>
+  <!-- password -->
+  <div class="form-control">
+    <label for="">Password</label>
+    <input type="password" placeholder="Enter your Password" />
+  </div>
+  <!-- password-confirm -->
+  <div class="form-control">
+    <label for="">Password Confirm</label>
+    <input type="password" placeholder="Enter your Password Confirm" />
+  </div>
+
+  <button type="submit" class="btn-success">Submit</button>
+</form>
+
+<hr />
+<pre>Form Valid: {{ form.valid }}</pre>
+<pre>Name Errors: {{ form.controls.name.errors | json }}</pre>
+<pre>Email Errors: {{ form.controls.email.errors | json }}</pre>
+<pre>Username Errors: {{ form.controls.username.errors | json }}</pre>
