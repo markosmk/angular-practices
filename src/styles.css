@@ -1,0 +1,251 @@
+/* Add application styles & imports to this file! */
+.active {
+  background-color: #0ae;
+  color: white;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul > li {
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+body,
+textarea,
+input,
+select {
+  background: 0;
+  border-radius: 0;
+  font: 16px sans-serif;
+  margin: 0;
+}
+.addon,
+.btn-sm,
+.nav,
+textarea,
+input,
+select {
+  outline: 0;
+  font-size: 14px;
+}
+.smooth {
+  transition: all 0.2s;
+}
+.btn,
+.nav a {
+  text-decoration: none;
+}
+.container {
+  margin: 0 20px;
+  width: auto;
+}
+@media (min-width: 1310px) {
+  .container {
+    margin: auto;
+    width: 1270px;
+  }
+}
+.btn,
+h2 {
+  font-size: 2em;
+}
+h1 {
+  font-size: 3em;
+}
+
+button,
+.btn {
+  background: #0ae;
+  border-radius: 6px;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 8px 1rem;
+}
+button:hover,
+.btn:hover {
+  background: #09d;
+}
+button:active,
+button:focus,
+.btn:active,
+.btn:focus {
+  background: #08b;
+}
+button:disabled,
+.btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.btn-success {
+  background: #3c5;
+}
+.btn-success:hover {
+  background: #2b4;
+}
+.btn-success:active,
+.btn-success:focus {
+  background: #2a4;
+}
+.btn-danger {
+  background: #d33;
+}
+.btn-danger:hover {
+  background: #c22;
+}
+.btn-danger:active,
+.btn-danger:focus {
+  background: #b22;
+}
+.btn-sm {
+  border-radius: 4px;
+  padding: 10px 14px 11px;
+}
+label {
+  display: inline-flex;
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+label > * {
+  display: inline-flex;
+}
+form > * {
+  display: block;
+  margin-bottom: 10px;
+}
+textarea,
+input,
+select {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 0.35rem;
+  width: 100%;
+}
+textarea:focus,
+input:focus,
+select:focus {
+  border-color: #5ab;
+}
+textarea,
+input[type='text'] {
+  -webkit-appearance: none;
+  /* width: 13em; */
+  outline: 0;
+}
+input[type='checkbox'],
+input[type='radio'] {
+  width: auto;
+  margin-left: 0.5rem;
+}
+.addon {
+  box-shadow: 0 0 0 1px #ccc;
+  padding: 8px 12px;
+}
+.row {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1% 0.5rem;
+  overflow: auto;
+}
+.col {
+  /* width: 100%; */
+  flex: 1 0 0%;
+}
+.table,
+.col-12 {
+  flex: 0 0 auto;
+  width: 100%;
+}
+.col-11 {
+  flex: 0 0 auto;
+  width: 91.66%;
+}
+.col-10 {
+  flex: 0 0 auto;
+  width: 83.33%;
+}
+.col-9 {
+  flex: 0 0 auto;
+  width: 75%;
+}
+.col-8 {
+  flex: 0 0 auto;
+  width: 66.66%;
+}
+.col-7 {
+  flex: 0 0 auto;
+  width: 58.33%;
+}
+.col-6 {
+  flex: 0 0 auto;
+  width: 50%;
+}
+.col-5 {
+  flex: 0 0 auto;
+  width: 41.66%;
+}
+.col-4 {
+  flex: 0 0 auto;
+  width: 33.33%;
+}
+.col-3 {
+  flex: 0 0 auto;
+  width: 25%;
+}
+.col-2 {
+  flex: 0 0 auto;
+  width: 16.66%;
+}
+.col-1 {
+  flex: 0 0 auto;
+  width: 8.33%;
+}
+@media (max-width: 870px) {
+  .row .col {
+    width: 100%;
+  }
+}
+/* aditionals */
+.flex {
+  display: flex;
+}
+pre {
+  background: #efefef;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+}
+.error {
+  display: block;
+  margin-top: 6px;
+  color: #c22;
+  font-size: 0.78rem;
+}
+button:active {
+  scale: 0.95;
+  transition: scale 0.1s linear;
+}
+.input-group {
+  display: flex;
+  margin-bottom: 12px;
+}
+.input-group > *:first-child {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.input-group > *:last-child {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.form-control {
+  margin-bottom: 1rem;
+}
