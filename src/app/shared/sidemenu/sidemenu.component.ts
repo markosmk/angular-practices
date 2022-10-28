@@ -8,7 +8,7 @@ interface MenuItem {
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
-  styleUrls: ['./sidemenu.component.css'],
+  styleUrls: [],
 })
 export class SidemenuComponent implements OnInit {
   templateMenu: MenuItem[] = [
@@ -37,6 +37,16 @@ export class SidemenuComponent implements OnInit {
     {
       text: 'Switches',
       route: './reactive/switches',
+    },
+  ];
+  validationMenu: MenuItem[] = [
+    {
+      text: 'Login',
+      route: './auth/login',
+    },
+    {
+      text: 'Register',
+      route: './auth/register',
     },
   ];
 
