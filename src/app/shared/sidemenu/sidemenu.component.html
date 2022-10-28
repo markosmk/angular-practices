@@ -1,0 +1,13 @@
+<h2>Template</h2>
+<hr />
+
+<ul>
+  <li *ngFor="let item of templateMenu" [routerLink]="[item.route]" routerLinkActive="active">{{ item.text }}</li>
+</ul>
+
+<h2>Reactive</h2>
+<hr />
+
+<ul>
+  <li *ngFor="let item of reactiveMenu" [routerLink]="[item.route]" routerLinkActive="active">{{ item.text }}</li>
+</ul>
