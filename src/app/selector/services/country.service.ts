@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 
 import { Country, CountrySmall } from '../interfaces/country.interface';
 
@@ -30,5 +30,25 @@ export class CountryService {
 
     const url: string = `${baseUrl}/alpha/${code.toLowerCase()}`;
     return this.http.get<Country[]>(url);
+  }
+
+  getCountriesByAlphaCodeSmall(code: string): Observable<CountrySmall[]> {
+    if (!code) return of([]);
+
+    const url: string = `${baseUrl}/alpha/${code.toLowerCase()}?fields=cca3,name`;
+    return this.http.get<CountrySmall[]>(url);
+  }
+
+  getCountriesByCodes(codes: string[]): Observable<CountrySmall[]> {
+    if (!codes.length) return of([]);
+
+    const response: Observable<any>[] = []; // TODO remove any
+
+    codes.forEach((code) => {
+      const resp = this.getCountriesByAlphaCodeSmall(code);
+      response.push(resp);
+    });
+
+    return forkJoin(response);
   }
 }
