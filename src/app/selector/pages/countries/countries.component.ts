@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { switchMap, tap } from 'rxjs';
 
-import { CountrySmall } from '../../interfaces/country.interface';
+import { Country, CountrySmall } from '../../interfaces/country.interface';
 import { CountryService } from '../../services/country.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class CountriesComponent implements OnInit {
 
   regions: string[] = [];
   countries: CountrySmall[] = [];
-  frontiers: [] = [];
+  frontiers: string[] = [];
 
   constructor(private fb: FormBuilder, private countryService: CountryService) {}
 
@@ -34,18 +34,47 @@ export class CountriesComponent implements OnInit {
     //     this.countries = items;
     //   });
     // });
+    this.form.get('frontier').disable();
+    this.form.get('country').disable();
 
     // with rxjs
     this.form
       .get('region')
       ?.valueChanges.pipe(
-        tap((_region) => {
-          this.form.get('country').reset('');
+        tap((region: string) => {
+          const refCountry = this.form.get('country');
+          refCountry.reset('');
+          if (region?.length) {
+            refCountry.enable();
+          } else {
+            refCountry.disable();
+          }
         }), // generate effect secondary
         switchMap((region) => this.countryService.getCountriesByRegion(region))
       )
       .subscribe((countries) => {
         this.countries = countries;
+      });
+
+    this.form
+      .get('country')
+      ?.valueChanges.pipe(
+        tap((country: string) => {
+          this.frontiers = [];
+          const refFrontier = this.form.get('frontier');
+          refFrontier.reset('');
+          if (country?.length) {
+            refFrontier.enable();
+          } else {
+            refFrontier.disable();
+          }
+        }), // generate effect secondary
+        switchMap((codeAlpha) => this.countryService.getCountriesByAlphaCode(codeAlpha))
+        // switchMap(),
+      )
+      .subscribe((country) => {
+        console.log(country);
+        this.frontiers = country ? country[0]?.borders || [] : [];
       });
   }
 

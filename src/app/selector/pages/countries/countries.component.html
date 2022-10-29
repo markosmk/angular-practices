@@ -11,21 +11,21 @@
     </select>
   </div>
 
-  <!-- select frontier -->
-  <div class="form-control">
-    <label for="frontier">Countries:</label>
-    <select formControlName="frontier" id="frontier">
-      <option value="">-- Select Frontier --</option>
-      <option *ngFor="let item of frontiers" [value]="item?.cca3">{{ item?.name.common }}</option>
-    </select>
-  </div>
-
   <!-- select country -->
   <div class="form-control">
     <label for="country">Countries:</label>
     <select formControlName="country" id="country">
       <option value="">-- Select Country --</option>
-      <option *ngFor="let item of countries" [value]="item.cca3">{{ item.name.common }}</option>
+      <option *ngFor="let item of countries" [value]="item?.cca3">{{ item?.name.common }}</option>
+    </select>
+  </div>
+
+  <!-- select frontier -->
+  <div class="form-control">
+    <label for="frontier">Frontiers:</label>
+    <select formControlName="frontier" id="frontier">
+      <option value="">-- Select Frontier --</option>
+      <option *ngFor="let item of frontiers" [value]="item">{{ item }}</option>
     </select>
   </div>
 
