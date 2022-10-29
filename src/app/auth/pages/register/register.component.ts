@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmailValidatorService } from 'src/app/shared/validator/email-validator.service';
 
 import { ValidatorService } from 'src/app/shared/validator/validator.service';
 
@@ -12,7 +13,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup = this.fb.group(
     {
       name: [, [Validators.required, Validators.pattern(this.validatorSrv.fullNamePattern)]],
-      email: [, [Validators.required, Validators.pattern(this.validatorSrv.emailPattern)]],
+      email: [, [Validators.required, Validators.pattern(this.validatorSrv.emailPattern)], [this.emailValidator]],
       username: [, [Validators.required, this.validatorSrv.validateUsername]],
       password: [, [Validators.required, Validators.minLength(6)]],
       passwordConfirm: [, [Validators.required]],
@@ -22,7 +23,11 @@ export class RegisterComponent implements OnInit {
     }
   );
 
-  constructor(private fb: FormBuilder, private validatorSrv: ValidatorService) {}
+  constructor(
+    private fb: FormBuilder,
+    private validatorSrv: ValidatorService,
+    private emailValidator: EmailValidatorService
+  ) {}
 
   ngOnInit(): void {
     this.form.reset({
@@ -32,8 +37,11 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  validateField(field: string) {
-    return this.form.get(field)?.invalid && this.form.get(field)?.touched;
+  validateField(field: string, type?: string) {
+    if (type) {
+      return this.form.get(field)?.errors?.[type] && (this.form.get(field)?.touched || this.form.get(field)?.dirty); // set error when iterating with the input
+    }
+    return this.form.get(field)?.invalid && (this.form.get(field)?.touched || this.form.get(field)?.dirty);
   }
 
   onSubmit() {

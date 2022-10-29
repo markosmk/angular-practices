@@ -6,14 +6,18 @@
   <div class="form-control">
     <label for="">Name</label>
     <input type="text" formControlName="name" placeholder="Enter your FirstName and LastName" />
-    <p class="error" *ngIf="validateField('name')">This field is required</p>
+    <p class="error" *ngIf="validateField('name', 'required')">This field is required</p>
   </div>
 
   <!-- email -->
   <div class="form-control">
     <label for="">Email</label>
     <input type="text" formControlName="email" placeholder="Enter your Email Address" />
-    <p class="error" *ngIf="validateField('email')">This field is required</p>
+    <div class="error" *ngIf="validateField('email')">
+      <p *ngIf="validateField('email', 'required')">This field is required</p>
+      <p *ngIf="validateField('email', 'pattern')">The Email is not correct</p>
+      <p *ngIf="validateField('email', 'emailTaken')">The Email Exists</p>
+    </div>
   </div>
 
   <!-- username -->
@@ -37,14 +41,16 @@
     <p class="error" *ngIf="validateField('passwordConfirm')">PasswordConfirm and Password must be same</p>
   </div>
 
-  <button type="submit" class="btn-success">Submit</button>
+  <button type="submit" [disabled]="form.pending" class="btn-success">Submit</button>
 </form>
 
 <hr />
 <pre>Form Valid: {{ form.valid }}</pre>
+<pre>Form Pending: {{ form.pending }}</pre>
+<pre>Form Status: {{ form.status }}</pre>
 <pre>Form Errors Global: {{ form.errors | json }}</pre>
-<!-- <pre>Name Errors: {{ form.controls.name.errors | json }}</pre>
+<pre>Name Errors: {{ form.controls.name.errors | json }}</pre>
 <pre>Email Errors: {{ form.controls.email.errors | json }}</pre>
-<pre>Username Errors: {{ form.controls.username.errors | json }}</pre> -->
+<pre>Username Errors: {{ form.controls.username.errors | json }}</pre>
 <pre>Password Errors: {{ form.controls.password.errors | json }}</pre>
 <pre>Confirm Errors: {{ form.controls.passwordConfirm.errors | json }}</pre>
