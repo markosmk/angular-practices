@@ -249,3 +249,45 @@ button:active {
 .form-control {
   margin-bottom: 1rem;
 }
+.loader {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+  margin: 15px auto;
+  position: relative;
+  color: #0ae;
+  left: -100px;
+  box-sizing: border-box;
+  animation: shadowRolling 3s linear infinite;
+}
+
+@keyframes shadowRolling {
+  0% {
+    box-shadow: 0px 0 #fff, 0px 0 #fff, 0px 0 #fff, 0px 0 #fff;
+  }
+  12% {
+    box-shadow: 100px 0 #0ae, 0px 0 #fff, 0px 0 #fff, 0px 0 #fff;
+  }
+  25% {
+    box-shadow: 110px 0 #0ae, 100px 0 #0ae, 0px 0 #fff, 0px 0 #fff;
+  }
+  36% {
+    box-shadow: 120px 0 #0ae, 110px 0 #0ae, 100px 0 #0ae, 0px 0 #fff;
+  }
+  50% {
+    box-shadow: 130px 0 #0ae, 120px 0 #0ae, 110px 0 #0ae, 100px 0 #0ae;
+  }
+  62% {
+    box-shadow: 200px 0 #fff, 130px 0 #0ae, 120px 0 #0ae, 110px 0 #0ae;
+  }
+  75% {
+    box-shadow: 200px 0 #fff, 200px 0 #fff, 130px 0 #0ae, 120px 0 #0ae;
+  }
+  87% {
+    box-shadow: 200px 0 #fff, 200px 0 #fff, 200px 0 #fff, 130px 0 #0ae;
+  }
+  100% {
+    box-shadow: 200px 0 #fff, 200px 0 #fff, 200px 0 #fff, 200px 0 #fff;
+  }
+}

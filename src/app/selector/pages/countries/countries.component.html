@@ -25,8 +25,9 @@
     <label for="frontier">Frontiers:</label>
     <select formControlName="frontier" id="frontier">
       <option value="">-- Select Frontier --</option>
-      <option *ngFor="let item of frontiers" [value]="item">{{ item }}</option>
+      <option *ngFor="let item of frontiers" [value]="item?.cca3">{{ item?.name.common }}</option>
     </select>
+    <span class="loader" *ngIf="loading"></span>
   </div>
 
   <button type="submit">Send Form</button>

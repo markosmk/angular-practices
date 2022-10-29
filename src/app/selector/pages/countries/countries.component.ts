@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { switchMap, tap } from 'rxjs';
 
-import { Country, CountrySmall } from '../../interfaces/country.interface';
+import { CountrySmall } from '../../interfaces/country.interface';
 import { CountryService } from '../../services/country.service';
 
 @Component({
@@ -13,13 +13,16 @@ import { CountryService } from '../../services/country.service';
 export class CountriesComponent implements OnInit {
   form: FormGroup = this.fb.group({
     region: ['', Validators.required],
-    country: ['', Validators.required],
-    frontier: ['', Validators.required],
+    country: [{ value: '', disabled: true }, Validators.required],
+    frontier: [{ value: '', disabled: true }, Validators.required],
   });
 
   regions: string[] = [];
   countries: CountrySmall[] = [];
-  frontiers: string[] = [];
+  frontiers: CountrySmall[] = [];
+
+  //ui
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder, private countryService: CountryService) {}
 
@@ -34,16 +37,18 @@ export class CountriesComponent implements OnInit {
     //     this.countries = items;
     //   });
     // });
-    this.form.get('frontier').disable();
-    this.form.get('country').disable();
+    // this.form.get('frontier').disable();
+    // this.form.get('country').disable();
 
     // with rxjs
+    // when change region
     this.form
       .get('region')
       ?.valueChanges.pipe(
         tap((region: string) => {
           const refCountry = this.form.get('country');
           refCountry.reset('');
+          this.loading = true;
           if (region?.length) {
             refCountry.enable();
           } else {
@@ -54,13 +59,16 @@ export class CountriesComponent implements OnInit {
       )
       .subscribe((countries) => {
         this.countries = countries;
+        this.loading = false;
       });
 
+    // when change country
     this.form
       .get('country')
       ?.valueChanges.pipe(
         tap((country: string) => {
           this.frontiers = [];
+          this.loading = true;
           const refFrontier = this.form.get('frontier');
           refFrontier.reset('');
           if (country?.length) {
@@ -69,12 +77,23 @@ export class CountriesComponent implements OnInit {
             refFrontier.disable();
           }
         }), // generate effect secondary
-        switchMap((codeAlpha) => this.countryService.getCountriesByAlphaCode(codeAlpha))
-        // switchMap(),
+        switchMap((codeAlpha) => this.countryService.getCountriesByAlphaCode(codeAlpha)),
+        switchMap((country) => {
+          const listFrontiers: string[] = country?.length ? country[0]?.borders || [] : [];
+          return this.countryService.getCountriesByCodes(listFrontiers);
+        })
       )
-      .subscribe((country) => {
-        console.log(country);
-        this.frontiers = country ? country[0]?.borders || [] : [];
+      .subscribe((countries) => {
+        this.frontiers = countries;
+        this.loading = false;
+        // for allowed valid form when not found frontier
+        if (!this.frontiers.length) {
+          this.form.get('frontier').disable();
+          this.form.get('frontier').clearValidators();
+        } else {
+          this.form.get('frontier').setValidators(Validators.required);
+        }
+        this.form.get('frontier').updateValueAndValidity();
       });
   }
 
