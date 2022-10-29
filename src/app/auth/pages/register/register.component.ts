@@ -23,6 +23,17 @@ export class RegisterComponent implements OnInit {
     }
   );
 
+  // new show errors with less html
+  get nameErrorMsg(): string {
+    const errors = this.form.get('name')?.errors;
+    if (errors?.required) {
+      return 'The Name is Required';
+    } else if (errors?.pattern) {
+      return 'Only allow FirstName and LastName';
+    }
+    return '';
+  }
+
   constructor(
     private fb: FormBuilder,
     private validatorSrv: ValidatorService,
