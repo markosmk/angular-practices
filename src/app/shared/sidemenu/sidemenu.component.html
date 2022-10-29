@@ -18,3 +18,10 @@
 <ul>
   <li *ngFor="let item of validationMenu" [routerLink]="[item.route]" routerLinkActive="active">{{ item.text }}</li>
 </ul>
+
+<h2>Selectors</h2>
+<hr />
+
+<ul>
+  <li *ngFor="let item of selectorMenu" [routerLink]="[item.route]" routerLinkActive="active">{{ item.text }}</li>
+</ul>

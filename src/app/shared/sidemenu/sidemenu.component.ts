@@ -49,6 +49,12 @@ export class SidemenuComponent implements OnInit {
       route: './auth/register',
     },
   ];
+  selectorMenu: MenuItem[] = [
+    {
+      text: 'Countries',
+      route: './selector',
+    },
+  ];
 
   constructor() {}
 
