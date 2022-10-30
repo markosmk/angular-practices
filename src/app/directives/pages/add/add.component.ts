@@ -14,6 +14,7 @@ export class AddComponent implements OnInit {
   form: FormGroup = this.fb.group({
     name: [, Validators.required],
     category: [, Validators.required],
+    tags: [, Validators.required],
   });
 
   constructor(private fb: FormBuilder) {}

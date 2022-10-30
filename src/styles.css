@@ -291,3 +291,7 @@ button:active {
     box-shadow: 200px 0 #fff, 200px 0 #fff, 200px 0 #fff, 200px 0 #fff;
   }
 }
+
+.hidden {
+  display: none;
+}

@@ -17,6 +17,12 @@
     <p errorMsg [color]="color" [message]="message"></p>
   </div>
 
+  <div class="form-control">
+    <label for="tags">Tags</label>
+    <input type="text" formControlName="tags" placeholder="Tags product" />
+    <p errorMsg [valid]="form.controls?.tags.valid"></p>
+  </div>
+
   <button type="submit" [disabled]="form.invalid" class="btn-success">Add Item</button>
 
   <button type="button" (click)="changeColor()">Change Color</button>
