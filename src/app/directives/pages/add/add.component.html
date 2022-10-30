@@ -29,6 +29,11 @@
   <button type="button" (click)="changeMessage()">Change Message</button>
 </form>
 
+<!-- alert -->
+<div *customIf="form.valid">
+  <h1 style="color: 'green'">Todo esta Ok</h1>
+</div>
+
 <hr />
 <pre>Form Valid: {{ form.valid }}</pre>
 <pre>Form Name Errors: {{ form.controls?.name.errors | json }}</pre>
