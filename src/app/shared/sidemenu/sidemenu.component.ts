@@ -55,6 +55,12 @@ export class SidemenuComponent implements OnInit {
       route: './selector',
     },
   ];
+  directivesMenu: MenuItem[] = [
+    {
+      text: 'Add Product',
+      route: './directives',
+    },
+  ];
 
   constructor() {}
 

@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./selector/selector.module').then((m) => m.SelectorModule),
   },
   {
+    path: 'directives',
+    loadChildren: () => import('./directives/directives.module').then((m) => m.DirectivesModule),
+  },
+  {
     path: '**',
     redirectTo: 'template',
   },
