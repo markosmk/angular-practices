@@ -11,7 +11,16 @@
     <p errorMsg color="violet" message="Es obligatorio" *ngIf="validateField('name')"></p>
   </div>
 
+  <div class="form-control">
+    <label for="category">Category</label>
+    <input type="text" formControlName="category" placeholder="Category product" />
+    <p errorMsg [color]="color" [message]="message"></p>
+  </div>
+
   <button type="submit" [disabled]="form.invalid" class="btn-success">Add Item</button>
+
+  <button type="button" (click)="changeColor()">Change Color</button>
+  <button type="button" (click)="changeMessage()">Change Message</button>
 </form>
 
 <hr />

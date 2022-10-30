@@ -7,8 +7,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styles: [],
 })
 export class AddComponent implements OnInit {
+  // defaults
+  message: string = 'Message Default';
+  color: string = 'pink';
+
   form: FormGroup = this.fb.group({
     name: [, Validators.required],
+    category: [, Validators.required],
   });
 
   constructor(private fb: FormBuilder) {}
@@ -21,5 +26,13 @@ export class AddComponent implements OnInit {
 
   save() {
     console.log(this.form.value);
+  }
+
+  changeColor() {
+    this.color = Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  changeMessage() {
+    this.message = 'Texto Cambiado ' + Math.random();
   }
 }
