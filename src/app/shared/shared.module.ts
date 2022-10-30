@@ -4,10 +4,11 @@ import { RouterModule } from '@angular/router';
 
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { ErrorMsgDirective } from './directives/error-msg.directive';
+import { CustomIfDirective } from './directives/custom-if.directive';
 
 @NgModule({
-  declarations: [SidemenuComponent, ErrorMsgDirective],
+  declarations: [SidemenuComponent, ErrorMsgDirective, CustomIfDirective],
   imports: [CommonModule, RouterModule],
-  exports: [SidemenuComponent, ErrorMsgDirective], // for other module can use it
+  exports: [SidemenuComponent, ErrorMsgDirective, CustomIfDirective], // for other module can use it
 })
 export class SharedModule {}
