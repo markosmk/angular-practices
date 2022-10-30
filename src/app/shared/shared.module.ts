@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { ErrorMsgDirective } from './directives/error-msg.directive';
 
 @NgModule({
-  declarations: [SidemenuComponent],
+  declarations: [SidemenuComponent, ErrorMsgDirective],
   imports: [CommonModule, RouterModule],
-  exports: [SidemenuComponent],
+  exports: [SidemenuComponent, ErrorMsgDirective], // for other module can use it
 })
 export class SharedModule {}
