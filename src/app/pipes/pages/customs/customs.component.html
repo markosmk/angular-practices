@@ -1,1 +1,14 @@
-<p>customs works!</p>
+<h1>Pipes Customs</h1>
+
+<div class="row">
+  <div class="col-6">
+    <p-card header="UpperCustom" subheader="simil uppercase">
+      <pre>minusculas =>   {{ 'minusculas' | uppercustom: hasCut }}</pre>
+      <button pButton label="Cut Text" (click)="onChangePipe()"></button>
+    </p-card>
+    <!-- <p-card header="I18nPluralPipe">
+      <pre>Actualmente {{ clients.length | i18nPlural: clientsMap }}</pre>
+      <button pButton label="Change -1 Clients" class="b-button-help" (click)="changeClients()"></button>
+    </p-card> -->
+  </div>
+</div>

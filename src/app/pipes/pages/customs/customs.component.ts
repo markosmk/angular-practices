@@ -3,14 +3,15 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-customs',
   templateUrl: './customs.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class CustomsComponent implements OnInit {
+  hasCut: boolean = false;
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  onChangePipe() {
+    this.hasCut = !this.hasCut;
   }
-
 }
