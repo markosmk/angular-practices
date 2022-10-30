@@ -1,0 +1,49 @@
+<h1>Pipes General</h1>
+<p>Pipes included in angular, accessible from the CommonModule module</p>
+
+<div class="row">
+  <div class="col-6">
+    <p-card header="I18nSelectPipe">
+      <pre>Hola {{ name }}, {{ gender | i18nSelect: letterMap }} a Github :)</pre>
+      <button pButton label="Change Name" class="b-button-help" (click)="changeName()"></button>
+    </p-card>
+    <p-card header="I18nPluralPipe">
+      <pre>Actualmente {{ clients.length | i18nPlural: clientsMap }}</pre>
+      <button pButton label="Change -1 Clients" class="b-button-help" (click)="changeClients()"></button>
+    </p-card>
+  </div>
+
+  <div class="col-6">
+    <p-card header="SlicePipe">
+      <p>Original</p>
+      <pre>{{ clients }}</pre>
+      <p>Slice:0:2</p>
+      <pre>{{ clients | slice: 0:2 }}</pre>
+      <p>Slice:1:2 (el primer numero lo incluye, el segundo lo excluye)</p>
+      <pre>{{ clients | slice: 1:2 }}</pre>
+    </p-card>
+  </div>
+
+  <div class="col-6">
+    <p-card header="KeyValuePipe">
+      <p>Original</p>
+      <pre>{{ persons | json }}</pre>
+      <p>Transform object</p>
+      <ul>
+        <li *ngFor="let item of persons | keyvalue">{{ item.key }}: {{ item.value }}</li>
+      </ul>
+    </p-card>
+  </div>
+
+  <div class="col-6">
+    <p-card
+      header="AsyncPipe"
+      subheader="When the component gets destroyed, the async pipe unsubscribes automatically to avoid potential memory leaks. When the reference of the expression changes, The async pipe automatically unsubscribes from the old Observable or Promise and subscribes to the new one."
+    >
+      <p>Observable Interval rxjs</p>
+      <pre>{{ myObservable | async }}</pre>
+      <p>Promise Js</p>
+      <pre>{{ promesa | async }}</pre>
+    </p-card>
+  </div>
+</div>

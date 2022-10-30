@@ -1,0 +1,59 @@
+<!-- <h5>Basic</h5>
+<p-button label="Submit"></p-button>
+<p-button label="Disabled" [disabled]="true"></p-button>
+<p-button label="Link" styleClass="p-button-link"></p-button>
+
+<h5>Icons</h5>
+<p-button label="Submit" icon="pi pi-check" iconPos="right"></p-button> -->
+
+<h1>Pipes Basics</h1>
+<p>Pipes included in angular, accessible from the CommonModule module</p>
+
+<div class="row">
+  <div class="col-6">
+    <p-card header="Text" subheader="pipes only change data visually, not modify real data">
+      <pre>lowercase: {{ 'HELPING' | lowercase }}</pre>
+      <pre>uppercase: {{ 'HelPing' | uppercase }}</pre>
+      <pre>titlecase: {{ 'this iS a TITLE' | titlecase }}</pre>
+    </p-card>
+  </div>
+
+  <div class="col-6">
+    <p-card [header]="'DatePipe'">
+      <pre>dateCurrent => {{ dateCurrent }}</pre>
+      <pre>dateCurrent | date: => {{ dateCurrent | date }}</pre>
+      <pre>dateCurrent | date: 'short' => {{ dateCurrent | date: 'short' }}</pre>
+      <pre>dateCurrent | date: 'long' => {{ dateCurrent | date: 'long' }}</pre>
+      <pre>dateCurrent | date: 'h:mm a z' => {{ dateCurrent | date: 'h:mm a z' }}</pre>
+      <hr />
+      <pre>dateCurrent | date: 'long': 'GMT-6' => {{ dateCurrent | date: 'long':'GMT-6' }}</pre>
+      <pre>dateCurrent | date: 'long': 'GMT-4' => {{ dateCurrent | date: 'long':'GMT-4' }}</pre>
+      <p>'en' y por default included in angular, for other languages you must import them</p>
+      <pre>dateCurrent | date: 'long': 'GMT-4': 'en' => {{ dateCurrent | date: 'long':'GMT-4':'en' }}</pre>
+      <pre>dateCurrent | date: 'long': 'GMT-4': 'ru-BY' => {{ dateCurrent | date: 'long':'GMT-4':'ru-BY' }}</pre>
+    </p-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <p-card header="DecimalPipe">
+      <pre>25650656.00043043: {{ '25650656.00043043' | number }}</pre>
+      <pre>25650656.00043043: {{ '25650656.00043043' | number: '1.2-2' }}</pre>
+      <pre>0.48: {{ '0.48' | number }}</pre>
+      <pre>Currency 443543: {{ '443543' | number }}</pre>
+    </p-card>
+  </div>
+  <div class="col-6">
+    <p-card header="CurrencyPipe && PercentPipe">
+      <pre>25650656.00043043: {{ '25650656.00043043' | currency }}</pre>
+      <pre>25650656.00043043: {{ '25650656.00043043' | currency: 'CAD' }}</pre>
+      <pre>25650656.00043043: {{ '25650656.00043043' | currency: 'CAD':'symbol-narrow' }}</pre>
+      <pre>25650656.00043043: {{ '25650656.00043043' | currency: 'CAD':'symbol-narrow':'1.4' }}</pre>
+      <p>Percent</p>
+
+      <pre>0.48: {{ 0.48 | percent: '1.2' }}</pre>
+      <pre>0.4856: {{ 0.4856 | percent: '1.2' }}</pre>
+    </p-card>
+  </div>
+</div>
