@@ -7,6 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomsComponent implements OnInit {
   hasCut: boolean = false;
+
+  heroes = [
+    {
+      name: 'Wonder Woman',
+      power: 'angel',
+    },
+    {
+      name: 'Batman',
+      power: 'force',
+    },
+    {
+      name: 'Superman',
+      power: 'inmortal',
+    },
+  ];
+
   constructor() {}
 
   ngOnInit(): void {}

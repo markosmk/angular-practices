@@ -18,9 +18,10 @@ import { InitialComponent } from './pages/initial/initial.component';
 import { CustomsComponent } from './pages/customs/customs.component';
 import { GeneralComponent } from './pages/general/general.component';
 import { UppercustomPipe } from './pipes/uppercustom.pipe';
+import { OrderPipe } from './pipes/order.pipe';
 
 @NgModule({
-  declarations: [InitialComponent, CustomsComponent, GeneralComponent, UppercustomPipe],
+  declarations: [InitialComponent, CustomsComponent, GeneralComponent, UppercustomPipe, OrderPipe],
   imports: [CommonModule, PipesRoutingModule, PrimeNgModule],
   providers: [{ provide: LOCALE_ID, useValue: 'es-AR' }],
 })

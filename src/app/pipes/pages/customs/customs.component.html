@@ -2,13 +2,17 @@
 
 <div class="row">
   <div class="col-6">
-    <p-card header="UpperCustom" subheader="simil uppercase">
+    <p-card header="UpperCustomPipe" subheader="simil uppercase">
       <pre>minusculas =>   {{ 'minusculas' | uppercustom: hasCut }}</pre>
       <button pButton label="Cut Text" (click)="onChangePipe()"></button>
     </p-card>
-    <!-- <p-card header="I18nPluralPipe">
-      <pre>Actualmente {{ clients.length | i18nPlural: clientsMap }}</pre>
-      <button pButton label="Change -1 Clients" class="b-button-help" (click)="changeClients()"></button>
-    </p-card> -->
+    <p-card header="OrderPipe">
+      <p>Original</p>
+      <pre>{{ heroes | json }}</pre>
+      <p>Listing</p>
+      <p *ngFor="let item of heroes">-- {{ item.name }} | {{ item.power }}</p>
+      <p>with OrderPipe</p>
+      <p *ngFor="let item of heroes | order: 'power'">-- {{ item['name'] }} | {{ item['power'] }}</p>
+    </p-card>
   </div>
 </div>
