@@ -8,7 +8,7 @@
   <div class="form-control">
     <label for="name">Name</label>
     <input type="text" formControlName="name" placeholder="Name product" />
-    <p class="error" errorMsg color="violet" *ngIf="validateField('name')">Name is required</p>
+    <p errorMsg color="violet" message="Es obligatorio" *ngIf="validateField('name')"></p>
   </div>
 
   <button type="submit" [disabled]="form.invalid" class="btn-success">Add Item</button>
