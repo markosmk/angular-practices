@@ -11,6 +11,20 @@ interface MenuItem {
   styleUrls: [],
 })
 export class SidemenuComponent implements OnInit {
+  pipesMenu: MenuItem[] = [
+    {
+      text: 'Pipes Initial',
+      route: './pipes',
+    },
+    {
+      text: 'Pipes General',
+      route: './pipes/general',
+    },
+    {
+      text: 'Pipes Custom',
+      route: './pipes/customs',
+    },
+  ];
   templateMenu: MenuItem[] = [
     {
       text: 'Basics',

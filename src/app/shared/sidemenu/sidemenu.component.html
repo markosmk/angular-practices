@@ -1,3 +1,16 @@
+<h2>{{ 'Pipes' }}</h2>
+<hr />
+<ul>
+  <li
+    *ngFor="let item of pipesMenu"
+    [routerLink]="[item.route]"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    {{ item.text }}
+  </li>
+</ul>
+
 <h2>Template</h2>
 <hr />
 
