@@ -27,6 +27,10 @@ const routes: Routes = [
     loadChildren: () => import('./pipes/pipes.module').then((m) => m.PipesModule),
   },
   {
+    path: 'games',
+    loadChildren: () => import('./games/games.module').then((m) => m.GamesModule),
+  },
+  {
     path: '**',
     redirectTo: 'template',
   },
