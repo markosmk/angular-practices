@@ -348,9 +348,9 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
-.container {
-  @apply m-4;
-}
 mat-sidenav {
   width: 250px;
+}
+mat-card img {
+  max-width: initial;
 }
