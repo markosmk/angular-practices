@@ -1,0 +1,12 @@
+<mat-card class="w-full">
+  <mat-card-header>
+    <mat-card-title>{{ game.title }}</mat-card-title>
+    <mat-card-subtitle>{{ game.publisherName }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image mat src="{{ game | image }}" alt="Photo Game" />
+  <mat-card-content> </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="['/games', game.id]">Ver Mas</button>
+    <button mat-button [routerLink]="['/games/edit', game.id]">Editar</button>
+  </mat-card-actions>
+</mat-card>
