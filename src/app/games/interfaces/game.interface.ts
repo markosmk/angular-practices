@@ -3,7 +3,7 @@ export interface Game {
   title: string;
   sortName: string;
   publisherName: string;
-  contentRatings: ContentRatings | null;
+  contentRatings?: ContentRatings | null;
   genres: string[];
   images: Images;
 }
@@ -15,7 +15,7 @@ export interface ContentRatings {
 
 export interface Images {
   GAME_BOX_ART: string;
-  HERO_IMAGE: string;
-  KEY_ART: string;
-  TV_BANNER: string;
+  HERO_IMAGE?: string;
+  KEY_ART?: string;
+  TV_BANNER?: string;
 }

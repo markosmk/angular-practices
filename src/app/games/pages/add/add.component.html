@@ -1,1 +1,49 @@
-<p>add works!</p>
+<h1 class="text-3xl font-bold my-4 pb-2">
+  Add New Game: <em class="text-cyan-500">{{ game.title }}</em>
+</h1>
+<mat-divider></mat-divider>
+
+<div class="flex flex-col gap-4 mx-4 md:w-2/3 md:mx-auto mt-8">
+  <mat-form-field class="w-full">
+    <mat-label>Title</mat-label>
+    <input type="text" matInput required [(ngModel)]="game.title" />
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Slug</mat-label>
+    <input type="text" matInput required [(ngModel)]="game.sortName" />
+  </mat-form-field>
+
+  <div class="flex flex-col md:flex-row gap-4">
+    <mat-form-field class="w-full">
+      <mat-label>Publisher</mat-label>
+      <input type="text" matInput required [(ngModel)]="game.publisherName" />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Genres</mat-label>
+      <mat-select multiple required [(ngModel)]="game.genres">
+        <mat-option *ngFor="let topping of listGenres" [value]="topping">{{ topping }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="w-full">
+    <mat-label>Url Image</mat-label>
+    <input type="text" matInput required [(ngModel)]="image" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="mt-4" (click)="save()">
+    <mat-icon>add</mat-icon>
+    Save
+  </button>
+</div>
+
+<div>
+  <pre>{{ game | json }}</pre>
+</div>
+
+<!-- "id": "4e659a51-dc57-480a-98bb-f775a8593089", "title": "Battlezone: Combat Commander", "sortName":
+"battlezone_combat_commander", "publisherName": "Rebellion", "contentRatings": { "categoryKey": "16+", "type": "Unrated"
+}, "genres": [ "ACTION", "STRATEGY" ], "images": { "GAME_BOX_ART":
+"https://img.nvidiagrid.net/apps/100986311/ZZ/GAME_BOX_ART_01_454aa73c-6af8-44f4-8e92-66dbbf8b7d2c.jpg", "HERO_IMAGE": -->

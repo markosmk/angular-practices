@@ -23,4 +23,8 @@ export class GameService {
   getBySearch(query: string): Observable<Game[]> {
     return this.http.get<Game[]>(`${this.baseUrl}/games?q=${query}&_limit=6`);
   }
+
+  postNewGame(formData: Game): Observable<Game> {
+    return this.http.post<Game>(`${this.baseUrl}/games`, formData);
+  }
 }
