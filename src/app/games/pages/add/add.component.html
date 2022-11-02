@@ -23,7 +23,7 @@
     <mat-form-field class="w-full">
       <mat-label>Genres</mat-label>
       <mat-select multiple required [(ngModel)]="game.genres">
-        <mat-option *ngFor="let topping of listGenres" [value]="topping">{{ topping }}</mat-option>
+        <mat-option *ngFor="let topping of listGenres" [value]="topping">{{ topping | titlecase }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -34,8 +34,13 @@
   </mat-form-field>
 
   <button mat-raised-button color="primary" class="mt-4" (click)="save()">
-    <mat-icon>add</mat-icon>
-    Save
+    <mat-icon>{{ game.id ? 'edit' : 'add' }}</mat-icon>
+    {{ game.id ? 'Update Changes' : 'Save New' }}
+  </button>
+
+  <button mat-raised-button color="warn" class="mt-4" *ngIf="game.id" (click)="remove()">
+    <mat-icon>trash</mat-icon>
+    remove
   </button>
 </div>
 

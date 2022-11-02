@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { of, switchMap } from 'rxjs';
 import { Game } from '../../interfaces/game.interface';
 import { GameService } from '../../services/game.service';
 
@@ -10,11 +12,27 @@ import { GameService } from '../../services/game.service';
 export class AddComponent implements OnInit {
   game: Game = {} as Game;
   image: string = '';
-  listGenres: string[] = ['Action', 'Adventure'];
+  listGenres: string[] = ['ACTION', 'ADVENTURE'];
 
-  constructor(private gameSrv: GameService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private gameSrv: GameService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params
+      .pipe(
+        switchMap((route) => {
+          if (route.id) {
+            return this.gameSrv.getGamesByShorName(route.id);
+          }
+          return of(null);
+        })
+      )
+      .subscribe((resp) => {
+        if (resp) {
+          this.game = resp;
+          this.image = resp.images.GAME_BOX_ART;
+        }
+      });
+  }
 
   save() {
     if (!this.game.title) return;
@@ -25,7 +43,16 @@ export class AddComponent implements OnInit {
       genres: this.game.genres.map((item) => item.toUpperCase()),
       images: { GAME_BOX_ART: this.image },
     };
-    // console.log(formData);
-    this.gameSrv.postNewGame(formData).subscribe((resp) => console.log(resp));
+    // if update
+    if (this.game.id) {
+      this.gameSrv.updateGame(formData).subscribe((resp) => console.log(resp));
+      return;
+    }
+    this.gameSrv.postNewGame(formData).subscribe((resp) => {
+      //go to edit url
+      this.router.navigate(['games/edit', resp.id]);
+    });
   }
+
+  remove() {}
 }
