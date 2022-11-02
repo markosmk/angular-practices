@@ -1,0 +1,45 @@
+<div class="flex flex-col gap-3 mt-6">
+  <div>
+    <h1 class="text-3xl font-bold mb-2 pb-3">Search Games</h1>
+    <mat-divider></mat-divider>
+  </div>
+  <div>
+    <h3 class="text-lg mb-3">Search</h3>
+
+    <form>
+      <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Search Game</mat-label>
+        <input
+          type="text"
+          placeholder="Type to search by title..."
+          aria-label="Search"
+          matInput
+          name="search"
+          [(ngModel)]="querySearch"
+          [matAutocomplete]="auto"
+          (input)="search()"
+        />
+        <button *ngIf="querySearch" matSuffix mat-icon-button aria-label="Clear" (click)="querySearch = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+        <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error> -->
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+          <mat-option *ngFor="let option of filteredOptions" [value]="option">
+            {{ option.title }}
+          </mat-option>
+          <mat-option *ngIf="filteredOptions.length === 0 && querySearch.trim().length > 0"
+            >Not Found any element with <b>{{ querySearch }}</b
+            >.</mat-option
+          >
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+
+<game-card *ngIf="gameSelected" [game]="gameSelected"></game-card>
+<pre>
+  {{ gameSelected | json }}
+</pre>
