@@ -31,4 +31,8 @@ export class GameService {
   updateGame(formData: Game): Observable<Game> {
     return this.http.put<Game>(`${this.baseUrl}/games/${formData.id}`, formData);
   }
+
+  deleteGame(id: string): Observable<Game> {
+    return this.http.delete<Game>(`${this.baseUrl}/games/${id}`);
+  }
 }

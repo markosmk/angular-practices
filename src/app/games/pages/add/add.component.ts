@@ -54,5 +54,10 @@ export class AddComponent implements OnInit {
     });
   }
 
-  remove() {}
+  remove() {
+    if (!this.game.id) return;
+    this.gameSrv.deleteGame(this.game.id).subscribe(() => {
+      this.router.navigate(['games']);
+    });
+  }
 }
