@@ -12,6 +12,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { GameComponent } from './pages/game/game.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GameCardComponent } from './components/game-card/game-card.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 import { ImagePipe } from './pipes/image.pipe';
 
@@ -23,6 +24,7 @@ import { ImagePipe } from './pipes/image.pipe';
     GameComponent,
     HomeComponent,
     GameCardComponent,
+    ConfirmComponent,
     ImagePipe,
   ],
   imports: [CommonModule, GamesRoutingModule, MaterialModule, HttpClientModule, FormsModule],

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, switchMap } from 'rxjs';
+
 import { Game } from '../../interfaces/game.interface';
 import { GameService } from '../../services/game.service';
+import { ConfirmComponent } from '../../components/confirm/confirm.component';
 
 @Component({
   selector: 'app-add',
@@ -19,7 +22,8 @@ export class AddComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private gameSrv: GameService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -63,13 +67,30 @@ export class AddComponent implements OnInit {
 
   remove() {
     if (!this.game.id) return;
-    this.gameSrv.deleteGame(this.game.id).subscribe(() => {
-      this.openSnackBar('Item Deleted!');
-      this.router.navigate(['games']);
+    const dialog = this.dialog.open(ConfirmComponent, {
+      width: '350px',
+      data: this.game,
     });
+
+    dialog
+      .afterClosed()
+      .pipe(
+        switchMap((resp) => {
+          if (resp) {
+            return this.gameSrv.deleteGame(this.game.id);
+          }
+          return of(null);
+        })
+      )
+      .subscribe((resp) => {
+        if (resp) {
+          this.openSnackBar('Item Deleted!');
+          this.router.navigate(['games']);
+        }
+      });
   }
 
-  openSnackBar(message: string, action?: string) {
+  openSnackBar(message: string) {
     this.snackBar.open(message, 'ok!', { duration: 2500, panelClass: ['bg-gray-600', 'text-white'] });
   }
 }
