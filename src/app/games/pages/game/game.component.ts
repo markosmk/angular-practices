@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
 import { switchMap } from 'rxjs';
@@ -11,7 +12,7 @@ import { GameService } from '../../services/game.service';
 })
 export class GameComponent implements OnInit {
   game!: Game;
-  constructor(private route: ActivatedRoute, private gameSrv: GameService) {
+  constructor(private route: ActivatedRoute, private gameSrv: GameService, public location: Location) {
     console.log(this.game);
   }
 
