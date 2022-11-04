@@ -1,6 +1,6 @@
 <mat-card class="w-full">
-  <mat-card-header>
-    <mat-card-title>{{ game.title }}</mat-card-title>
+  <mat-card-header class="overflow-hidden block">
+    <mat-card-title class="truncate w-full block">{{ game.title }}</mat-card-title>
     <mat-card-subtitle>{{ game.publisherName }}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image mat src="{{ game | image }}" alt="Photo Game" />
