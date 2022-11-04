@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, switchMap } from 'rxjs';
 import { Game } from '../../interfaces/game.interface';
@@ -14,7 +15,12 @@ export class AddComponent implements OnInit {
   image: string = '';
   listGenres: string[] = ['ACTION', 'ADVENTURE'];
 
-  constructor(private route: ActivatedRoute, private router: Router, private gameSrv: GameService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private gameSrv: GameService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.route.params
@@ -45,10 +51,11 @@ export class AddComponent implements OnInit {
     };
     // if update
     if (this.game.id) {
-      this.gameSrv.updateGame(formData).subscribe((resp) => console.log(resp));
+      this.gameSrv.updateGame(formData).subscribe((_resp) => this.openSnackBar('Item Updated!'));
       return;
     }
     this.gameSrv.postNewGame(formData).subscribe((resp) => {
+      this.openSnackBar('Item Added Successfully!');
       //go to edit url
       this.router.navigate(['games/edit', resp.id]);
     });
@@ -57,7 +64,12 @@ export class AddComponent implements OnInit {
   remove() {
     if (!this.game.id) return;
     this.gameSrv.deleteGame(this.game.id).subscribe(() => {
+      this.openSnackBar('Item Deleted!');
       this.router.navigate(['games']);
     });
+  }
+
+  openSnackBar(message: string, action?: string) {
+    this.snackBar.open(message, 'ok!', { duration: 2500, panelClass: ['bg-gray-600', 'text-white'] });
   }
 }
